@@ -1,5 +1,5 @@
 export interface Ichapater {
-    id: number,
+    id: number | string,
     revelation_place: string,
     revelation_order: string,
     bismillah_pre: boolean,
@@ -11,7 +11,7 @@ export interface Ichapater {
     translated_name: {
         name: string
     },
-    time: string,
+    time: Date,
     verse_count: number
 
 }

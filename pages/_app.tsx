@@ -4,7 +4,7 @@ import store from '../redux/store'
 import { Provider } from 'react-redux'
 import NextNProgress from "nextjs-progressbar";
 import { SnackbarProvider } from "notistack";
-import ProgressBar from "react-scroll-progress-bar";
+// import ProgressBar from "react-scroll-progress-bar";
 
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <NextNProgress height={3} color="black" />
     <SnackbarProvider>
       <Provider store={store}>
-        <ProgressBar bgcolor="#00b7ff" />
+        {/* <ProgressBar bgcolor="#00b7ff" /> */}
         <Component {...pageProps} />
       </Provider></SnackbarProvider>
 

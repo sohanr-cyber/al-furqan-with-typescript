@@ -12,12 +12,12 @@ export interface IBookmarks {
     bookmarkedSurah: Ichapater[]
 }
 
-const initialState: IBookmarks = {
-    bookmarks: (Cookies.get("bookmarks") as unknown) as Iverse
-        ? JSON.parse(Cookies.get("bookmarks"))
+const initialState: any = {
+    bookmarks: Cookies.get("bookmarks")
+        ? Cookies.get("bookmarks")
         : [],
     bookmarkedSurah: Cookies.get("bookmarkedSurah")
-        ? JSON.parse(Cookies.get("bookmarkedSurah"))
+        ? Cookies.get("bookmarkedSurah")
         : [],
 }
 
@@ -25,31 +25,31 @@ export const bookmarkSlice = createSlice({
     name: 'bookmark',
     initialState,
     reducers: {
-        addToBookmark: (state, action: PayloadAction<Iverse>) => {
-            let withNewOne: Iverse[] = [action.payload, ...state.bookmarks];
-            Cookies.set("bookmarks", JSON.stringify(withNewOne))
+        addToBookmark: (state, action: PayloadAction<any>) => {
+            let withNewOne: any = [action.payload, ...state.bookmarks];
+            Cookies.set("bookmarks", withNewOne)
             state.bookmarks = withNewOne
         },
 
-        removeFromBookmark: (state, action: PayloadAction<Iverse>) => {
+        removeFromBookmark: (state, action: PayloadAction<any>) => {
             let withNewOne = state.bookmarks.filter(
-                (item) => item.id != action.payload.id
+                (item: any) => item.id != action.payload.id
             );
-            Cookies.set("bookmarks", JSON.stringify(withNewOne))
+            Cookies.set("bookmarks", withNewOne)
             state.bookmarks = withNewOne;
         },
 
         addToBookmarkedSurah: (state, action: PayloadAction<Ichapater>) => {
-            let withNewOne = [action.payload, ...state.bookmarkedSurah];
-            Cookies.set("bookmarkedSurah", JSON.stringify(withNewOne))
+            let withNewOne: any = [action.payload, ...state.bookmarkedSurah];
+            Cookies.set("bookmarkedSurah", withNewOne)
             state.bookmarkedSurah = withNewOne;
         },
 
         removeFromBookmarkedSurah: (state, action: PayloadAction<Ichapater>) => {
             let withNewOne = state.bookmarkedSurah.filter(
-                (item) => item.id != action.payload.id
+                (item: any) => item.id != action.payload.id
             );
-            Cookies.set("bookmarkedSurah", JSON.stringify(withNewOne))
+            Cookies.set("bookmarkedSurah", withNewOne)
             state.bookmarkedSurah = withNewOne;
         },
     },

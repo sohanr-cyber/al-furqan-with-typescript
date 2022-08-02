@@ -11,7 +11,7 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { Ichapater, Isurah } from '../../type';
+import { Ichapater, Isurah, Iverse } from '../../type';
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../../redux/store'
 import { addToBookmark, addToBookmarkedSurah, removeFromBookmark, removeFromBookmarkedSurah } from "../../redux/BookmarkSlicer";
@@ -28,7 +28,7 @@ interface IProps {
 const Chapter = ({ surah, chapters }: IProps) => {
 
   const dispatch = useDispatch();
-  const bookmarks = useSelector((state: RootState) => state.bookmark.bookmarks);
+  const bookmarks: Iverse[] = useSelector((state: RootState) => state.bookmark.bookmarks);
   const [openChapters, setOpenChapters] = useState(false);
   const [openVerses, setOpenVerses] = useState(false);
   const [query, setQuery] = useState("");
@@ -42,13 +42,17 @@ const Chapter = ({ surah, chapters }: IProps) => {
   const bookmarkedSurah: Ichapater[] = useSelector(
     (state: RootState) => state.bookmark.bookmarkedSurah
   );
-  const currentChapter: Ichapater = chapters.find((item) => (item.id as unknown) as string == router.query.id);
+  // const currentChapter: Ichapater = chapters.find((item) => (item.id as unknown) as string == router.query.id);
+  const currentChapter: any = chapters.find((item) => (item.id == router.query.id));
+
 
   useEffect(() => {
-    dispatch(addtoHistory({ ...currentChapter, time: new Date() }));
+    const history: any = { ...currentChapter, time: new Date }
+
+    dispatch(addtoHistory(history));
     console.log("dispatching ..............")
   }, [router.query.id]);
-  5
+
   return (
     <>
       <Head>

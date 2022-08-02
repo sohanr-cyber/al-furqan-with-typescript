@@ -10,15 +10,15 @@ export interface IState {
 
 export const historySlice = createSlice({
   name: "history",
-  initialState: <IState>{
-    history: Cookies.get("history") ? JSON.parse(Cookies.get("history")) : [],
+  initialState: <any>{
+    history: Cookies.get("history") ? Cookies.get("history") : [],
   }
   ,
 
   reducers: {
     addtoHistory: (state, action: PayloadAction<Ichapater>) => {
-      let withNewOne = [action.payload, ...state.history];
-      Cookies.set("history", JSON.stringify(withNewOne));
+      let withNewOne: any = [action.payload, ...state.history];
+      Cookies.set("history", withNewOne);
       state.history = withNewOne;
     },
   },

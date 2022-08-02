@@ -26,7 +26,7 @@ const SearchBar = () => {
         const fetch = async (query: string) => {
             try {
                 setLoading(true);
-                const { data }: Iverse[] = await axios.get(
+                const { data } = await axios.get(
                     `https://al-quran1.p.rapidapi.com/corpus/${query}`,
                     {
                         headers: {
